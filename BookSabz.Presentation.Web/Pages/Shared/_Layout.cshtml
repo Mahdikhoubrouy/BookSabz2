@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html dir="rtl" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>@ViewData["Title"] - کتاب سبز</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+
+<body>
+ <header class="header">
+
+    <div class="header-1">
+
+        <a href="#" class="logo"> <i class="fas fa-book"></i> کتاب سبز </a>
+
+        <form method="post" asp-page="/SearchResult" asp-page-handler="Search" class="search-form">
+            <input type="search" name="Search.Value" placeholder="جستجو کنید" id="search-box">
+            <label for="search-box" class="fas fa-search"></label>
+        </form>
+
+        <div class="icons">
+            <div id="search-btn" class="fas fa-search"></div>
+        </div>
+
+    </div>
+
+
+        <div class="header-2">
+            <nav class="navbar">
+                <a asp-page="/index">خانه</a>
+                <a asp-page="/books">کتاب ها</a>
+            </nav>
+        </div>
+
+</header>
+
+<nav class="bottom-navbar">
+    <a href="/index" class="fas fa-home"></a>
+    <a href="/books" class="fas fa-solid fa-book"></a>
+</nav>
+
+
+
+
+
+
+
+    @RenderBody()
+
+    <section class="footer">
+
+        <div class="box-container">
+
+
+            <div class="box">
+                <h3>راه های ارتباطی</h3>
+                <a href="#"> <i class="fas fa-phone"></i> 989058507043+ </a>
+                <a href="#"> <i class="fas fa-envelope"></i> MahdiKhoubrouy@gmail.ir </a>
+            </div>
+
+        </div>
+
+        <div class="share">
+            <a href="#" class="fab fa-facebook-f"></a>
+            <a href="#" class="fab fa-twitter"></a>
+            <a href="#" class="fab fa-instagram"></a>
+        </div>
+
+        <div class="credit"> توسعه یافته توسط : <a href="https://khoubrouy.ir"><span> محمدمهدی خوبروی</span></a> </div>
+
+    </section>
+
+
+
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+    <script src="~/js/script.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

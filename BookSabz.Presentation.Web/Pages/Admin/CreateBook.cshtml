@@ -1,0 +1,68 @@
+﻿@page
+@model BookSabz.Pages.Admin.CreateBookModel
+@{
+	Layout = "_AdminLayout";
+	ViewData["AdminTitle"] = "افزودن کتاب";
+}
+
+
+<div class="col-12 mb-3">
+		@if (Model.ErrorMessage != null)
+	{
+	<div class="alert alert-danger">
+	@Model.ErrorMessage
+	</div>
+	}
+	<div class="col-6 mr-auto ml-auto text-center">
+		<h1 class="border-bottom">ایجاد مقاله جدید</h1>
+	</div>
+</div>
+
+<form asp-page-handler="Create" enctype="multipart/form-data" class="mr-auto ml-auto" method="post">
+	<div class="form-row">
+		<div class="form-group col-md-6">
+			<label asp-for="Book.Name"></label>
+			<input class="form-control" asp-for="Book.Name">
+			<span asp-validation-for="Book.Name" class="text-danger"></span>
+		</div>
+		<div class="form-group col-md-6">
+			<label asp-for="Book.Author"></label>
+			<input class="form-control" asp-for="Book.Author">
+		</div>
+		<div class="form-group col-md-6">
+			<label asp-for="Book.PublishYear"></label>
+			<input class="form-control" asp-for="Book.PublishYear">
+		</div>
+		<div class="form-group col-md-6">
+			<label asp-for="Book.Image"></label>
+			<input class="form-control" asp-for="Book.Image" type="file">
+			<span asp-validation-for="Book.Image" class="text-danger"></span>
+		</div>
+
+		<div class="form-group col-md-6">
+			<label asp-for="Book.CategoryId"></label>
+			<select class="form-select" aria-label="Default select example" asp-for="Book.CategoryId">
+				<option selected>یک کتگوری را انتخاب کنید</option>
+				@foreach (var item in Model.Categories)
+				{
+					<option value="@item.Id">@item.Name</option>
+				}
+			</select>
+			<span asp-validation-for="Book.CategoryId" class="text-danger"></span>
+		</div>
+
+		<div class="form-group col-md-12">
+			<label asp-for="Book.Description"></label>
+			<textarea class="form-control" asp-for="Book.Description"></textarea>
+			<span asp-validation-for="Book.Description" class="text-danger"></span>
+		</div>
+
+		<div class="form-group col-md-6">
+			<label asp-for="Book.BookFile"></label>
+			<input class="form-control" asp-for="Book.BookFile" type="file">
+			<span asp-validation-for="Book.BookFile" class="text-danger"></span>
+		</div>
+
+	</div>
+	<button type="submit" class="btn btn-success">ارسال</button>
+</form>
