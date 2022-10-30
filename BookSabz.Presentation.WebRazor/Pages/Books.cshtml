@@ -1,0 +1,17 @@
+﻿@page
+@model BookSabz.Presentation.WebRazor.Pages.BooksModel
+@addTagHelper *,TagHelpers
+@{
+    ViewData["Title"] = "کتاب ها";
+}
+
+
+<view-books asp-page-name="Book-Details" section-name="کتاب های عمومی" book-list="Model.General"></view-books>
+
+<view-books asp-page-name="Book-Details" section-name="کتاب های فلسفی" book-list="Model.philosophical"></view-books>
+
+<view-books asp-page-name="Book-Details" section-name="کتاب های دینی" book-list="Model.Religious"></view-books>
+
+<view-books asp-page-name="Book-Details" section-name="کتاب های روانشناسی" book-list="Model.Psychology"></view-books>
+
+<view-books asp-page-name="Book-Details" section-name="کتاب های درسی" book-list="Model.Course"></view-books>

@@ -10,38 +10,25 @@ namespace BookSabz.Application
     public class BookCategoryApplication : IBookCategoryApplication
     {
         private readonly IBookCategoryUnitOfWork _bookCategoryUnitOfWork;
-        private readonly IDbUnitOfWork _dbUnitOfWork;
         private readonly IBookCategoryValidatorService _bookCategoryValidatorService;
 
-        public BookCategoryApplication(IBookCategoryUnitOfWork bookCategoryUnitOfWork, IDbUnitOfWork dbUnitOfWork, IBookCategoryValidatorService bookCategoryValidatorService)
+        public BookCategoryApplication(IBookCategoryUnitOfWork bookCategoryUnitOfWork, IBookCategoryValidatorService bookCategoryValidatorService)
         {
             _bookCategoryUnitOfWork = bookCategoryUnitOfWork;
-            _dbUnitOfWork = dbUnitOfWork;
             _bookCategoryValidatorService = bookCategoryValidatorService;
         }
 
         public void Create(CreateBookCategory command)
         {
-            _dbUnitOfWork.BeginTran();
-
             _bookCategoryUnitOfWork.WriteBookCategory.Create(new BookCategory(command.Name, _bookCategoryValidatorService));
-
-            _dbUnitOfWork.SaveChange();
-
-            _dbUnitOfWork.CommitTran();
-
+            _bookCategoryUnitOfWork.SaveChanges();
         }
 
         public async void Delete(int id)
         {
-            _dbUnitOfWork.BeginTran();
-
             var bookCategory = await _bookCategoryUnitOfWork.ReadBookCategory.GetAsync(id);
             bookCategory.Delete();
-
-            _dbUnitOfWork.SaveChange();
-
-            _dbUnitOfWork.CommitTran();
+            _bookCategoryUnitOfWork.SaveChanges();
 
         }
 
@@ -73,20 +60,18 @@ namespace BookSabz.Application
 
         public async Task Rename(RenameBookCategory command)
         {
-            _dbUnitOfWork.BeginTran();
-            _dbUnitOfWork.SaveChange();
+
             var bookCategory = await _bookCategoryUnitOfWork.ReadBookCategory.GetAsync(command.Id);
             bookCategory.Rename(command.Name);
-            _dbUnitOfWork.CommitTran();
+            _bookCategoryUnitOfWork.SaveChanges();
         }
 
         public async void UnDelete(int id)
         {
-            _dbUnitOfWork.BeginTran();
-            _dbUnitOfWork.SaveChange();
+
             var bookCategory = await _bookCategoryUnitOfWork.ReadBookCategory.GetAsync(id);
             bookCategory.UnDelete();
-            _dbUnitOfWork.CommitTran();
+            _bookCategoryUnitOfWork.SaveChanges();
         }
 
     }

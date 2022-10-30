@@ -40,7 +40,6 @@ namespace BookSabz.ServiceRegister
             services.AddScoped<IBookUnitOfWork, BookUnitOfWork>();
             services.AddScoped<IBookCategoryUnitOfWork, BookCategoryUnitOfWork>();
             services.AddScoped<ISearchRepository, SearchRepository>();
-            services.AddScoped<IDbUnitOfWork, DbUnitOfWork>();
             return services;
         }
 

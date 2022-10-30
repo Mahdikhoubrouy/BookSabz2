@@ -11,6 +11,6 @@ namespace BookSabz.Infrastructure.EFCore.BookRep
     {
         public IReadBookRepository ReadBook { get; }
         public IWriteBookRepository WriteBook { get; }
-
+        public void SaveChanges();
     }
 }

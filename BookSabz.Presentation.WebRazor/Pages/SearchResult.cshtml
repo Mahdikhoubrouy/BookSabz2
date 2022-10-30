@@ -1,0 +1,15 @@
+﻿@page
+@model BookSabz.Presentation.WebRazor.Pages.SearchResultModel
+@{
+}
+
+@section Styles{
+        <link rel="stylesheet" href="~/css/SearchResultStyle.css">
+}
+
+		<div class="parent">
+	@foreach (var item in Model.SearchResult)
+	{
+				<div class="card"><a asp-page="Book-Details" asp-route-id="@item.Id"><div class="items"><img src="~/Books/images/@item.ImagePath"/><span>@item.Name</span></div></a></div>	
+	}
+	</div>

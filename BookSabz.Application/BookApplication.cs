@@ -12,42 +12,38 @@ namespace BookSabz.Application
     {
 
         private readonly IBookUnitOfWork _bookUnitOfWork;
-        private readonly IDbUnitOfWork _dbTranUnitOfWork;
 
         private readonly IBookValidatorService _bookValidatorService;
 
-        public BookApplication(IBookUnitOfWork bookUnitOfWork, IDbUnitOfWork dbTranUnitOfWork, IBookValidatorService bookValidatorService)
+        public BookApplication(IBookUnitOfWork bookUnitOfWork, IBookValidatorService bookValidatorService)
         {
             _bookUnitOfWork = bookUnitOfWork;
-            _dbTranUnitOfWork = dbTranUnitOfWork;
             _bookValidatorService = bookValidatorService;
+
         }
+
+
 
 
         #region Command
 
         public void Create(CreateBook command)
         {
-            _dbTranUnitOfWork.BeginTran();
 
             _bookUnitOfWork.WriteBook.Create(new Book(command.Name, command.ImagePath, command.Author, command.PublishYear
             , command.FilePath, command.Description, command.BookCategoryId, _bookValidatorService));
-            _dbTranUnitOfWork.SaveChange();
-            _dbTranUnitOfWork.CommitTran();
 
+            _bookUnitOfWork.SaveChanges();
 
         }
 
         public async void Edit(EditBook command)
         {
-            _dbTranUnitOfWork.BeginTran();
 
             var book = await _bookUnitOfWork.ReadBook.GetAsync(command.Id);
             book.Edit(command.Name, command.ImagePath, command.Author, command.PublishYear, command.FilePath, command.Description);
-            _dbTranUnitOfWork.SaveChange();
-            _dbTranUnitOfWork.CommitTran();
 
-
+            _bookUnitOfWork.SaveChanges();
         }
 
 
@@ -86,49 +82,38 @@ namespace BookSabz.Application
 
         public async void Delete(long id)
         {
-            _dbTranUnitOfWork.BeginTran();
-
             var book = await _bookUnitOfWork.ReadBook.GetAsync(id);
             book.Delete();
-            _dbTranUnitOfWork.SaveChange();
-
-            _dbTranUnitOfWork.CommitTran();
+            _bookUnitOfWork.SaveChanges();
 
         }
         public async void UnDelete(long id)
         {
-            _dbTranUnitOfWork.BeginTran();
-
             var book = await _bookUnitOfWork.ReadBook.GetAsync(id);
 
             book.UnDelete();
 
-            _dbTranUnitOfWork.SaveChange();
-            _dbTranUnitOfWork.CommitTran();
+            _bookUnitOfWork.SaveChanges();
         }
 
         public async void UnVisible(long id)
         {
-            _dbTranUnitOfWork.BeginTran();
 
             var book = await _bookUnitOfWork.ReadBook.GetAsync(id);
 
             book.UnVisible();
 
-            _dbTranUnitOfWork.SaveChange();
-            _dbTranUnitOfWork.CommitTran();
+            _bookUnitOfWork.SaveChanges();
         }
 
         public async void Visible(long id)
         {
-            _dbTranUnitOfWork.BeginTran();
 
             var book = await _bookUnitOfWork.ReadBook.GetAsync(id);
 
             book.Visible();
 
-            _dbTranUnitOfWork.SaveChange();
-            _dbTranUnitOfWork.CommitTran();
+            _bookUnitOfWork.SaveChanges();
         }
 
         #endregion

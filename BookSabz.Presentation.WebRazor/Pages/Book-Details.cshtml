@@ -1,0 +1,38 @@
+﻿@page "{id:long}"
+@model BookSabz.Pages.Book_DetailsModel
+@addTagHelper *,TagHelpers
+@{
+    ViewData["Title"]= "کتاب : "+ Model.Book.Name;
+}
+
+
+        <section class="deal">
+
+            <div class="content">
+                <h1>@Model.Book.Name</h1>
+                <h3>دسته بندی : @Model.Book.CategoryName</h3>
+                <br />
+                <br />
+               
+                <p>@Model.Book.Description</p>
+
+                <br />
+                <br />
+                <h2>نویسنده : @Model.Book.Author</h2>
+                <br />
+                <br />
+                <a href="~/Books/Downloads/Books/@Model.Book.FilePath" class="btn">دانلود کتاب</a>
+            </div>
+        
+            <div class="image">
+                <img src="~/Books/images/@Model.Book.ImagePath" alt="عکس کتاب">
+            </div>
+        
+        </section>
+
+
+
+        <view-books asp-page-name="Book-Details" section-name="کتاب های مشابه" book-list="Model.SimilarBooks"></view-books>
+
+        <view-books asp-page-name="Book-Details" section-name="کتاب های پیشنهادی" book-list="Model.SuggestedBooks"></view-books>
+

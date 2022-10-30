@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{F4DD2153-A76
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TagHelpers", "lib\TagHelpers\TagHelpers.csproj", "{B9FC6AE9-20EB-44A0-8DC8-F834AD386F56}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookSabz.Presentation.Web", "BookSabz.Presentation.Web\BookSabz.Presentation.Web.csproj", "{336F9CAD-CB0F-48EF-9771-5A83E6D6C31D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookSabz.Presentation.WebRazor", "BookSabz.Presentation.WebRazor\BookSabz.Presentation.WebRazor.csproj", "{FFF147EA-BF73-4116-864E-F1A7C6CA472D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,10 +55,10 @@ Global
 		{B9FC6AE9-20EB-44A0-8DC8-F834AD386F56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9FC6AE9-20EB-44A0-8DC8-F834AD386F56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9FC6AE9-20EB-44A0-8DC8-F834AD386F56}.Release|Any CPU.Build.0 = Release|Any CPU
-		{336F9CAD-CB0F-48EF-9771-5A83E6D6C31D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{336F9CAD-CB0F-48EF-9771-5A83E6D6C31D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{336F9CAD-CB0F-48EF-9771-5A83E6D6C31D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{336F9CAD-CB0F-48EF-9771-5A83E6D6C31D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFF147EA-BF73-4116-864E-F1A7C6CA472D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFF147EA-BF73-4116-864E-F1A7C6CA472D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFF147EA-BF73-4116-864E-F1A7C6CA472D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFF147EA-BF73-4116-864E-F1A7C6CA472D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,15 +7,21 @@ namespace BookSabz.Infrastructure.EFCore.BookCategoeryRepo
     {
         private readonly IReadBookCategoryRepository _readBookCategoryRepository;
         private readonly IWriteBookCategoryRepository _writeBookCategoryRepository;
-
-        public BookCategoryUnitOfWork(IReadBookCategoryRepository readBookCategoryRepository, IWriteBookCategoryRepository writeBookCategoryRepository)
+        private readonly BookSabzContext _dbContext;
+        public BookCategoryUnitOfWork(IReadBookCategoryRepository readBookCategoryRepository, IWriteBookCategoryRepository writeBookCategoryRepository, BookSabzContext dbContext)
         {
             _readBookCategoryRepository = readBookCategoryRepository;
             _writeBookCategoryRepository = writeBookCategoryRepository;
+            _dbContext = dbContext;
         }
 
         public IReadBookCategoryRepository ReadBookCategory => _readBookCategoryRepository;
 
         public IWriteBookCategoryRepository WriteBookCategory => _writeBookCategoryRepository;
+
+        public void SaveChanges()
+        {
+            _dbContext.SaveChanges();
+        }
     }
 }

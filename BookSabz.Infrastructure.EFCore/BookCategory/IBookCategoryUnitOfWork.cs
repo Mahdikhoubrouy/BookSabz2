@@ -12,6 +12,6 @@ namespace BookSabz.Infrastructure.EFCore.BookRep
     {
         public IReadBookCategoryRepository ReadBookCategory { get; }
         public IWriteBookCategoryRepository WriteBookCategory { get; }
-
+        public void SaveChanges();
     }
 }
