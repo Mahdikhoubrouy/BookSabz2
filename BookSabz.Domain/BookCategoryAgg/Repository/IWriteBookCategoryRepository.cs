@@ -4,6 +4,5 @@ namespace BookSabz.Domain.BookCategoryAgg.Repository
 {
     public interface IWriteBookCategoryRepository : IWriteRepository<BookCategory,int>
     {
-        
     }
 }

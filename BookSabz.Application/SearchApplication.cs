@@ -13,8 +13,11 @@ namespace BookSabz.Application
 		}
 
 		public List<SearchViewModel> Search(SearchModel command)
+		
 		{
-			return _searchRepository.SearchAnyValue(command.Value);
+			var search = new Domain.SearchAgg.Search(command.Value);
+
+            return _searchRepository.SearchAnyValue(search);
 		}
 	}
 }

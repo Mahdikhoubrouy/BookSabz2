@@ -21,10 +21,6 @@ namespace BookSabz.Application
             _bookValidatorService = bookValidatorService;
 
         }
-
-
-
-
         #region Command
 
         public void Create(CreateBook command)

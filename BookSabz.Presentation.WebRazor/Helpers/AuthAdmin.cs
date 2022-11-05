@@ -23,7 +23,7 @@ namespace BookSabz.Presentation.WebRazor.Helpers
                 Key = Guid.NewGuid();
                 var cookieoption = new CookieOptions
                 {
-                    Expires = DateTime.Now.AddHours(1)
+                    Expires = DateTime.Now.AddMinutes(30),
                 };
 
                 _httpContextAccessor.HttpContext.Response.Cookies.Append("key", Key.ToString(), cookieoption);

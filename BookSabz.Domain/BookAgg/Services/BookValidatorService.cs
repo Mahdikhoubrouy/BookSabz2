@@ -17,9 +17,9 @@ namespace BookSabz.Domain.BookAgg.Services
             _readBookCategoryRepository = readBookCategoryRepository;
         }
 
-        public async void CheckBookCategoryIdAlreadyExists(int categoryId)
+        public void CheckBookCategoryIdAlreadyExists(int categoryId)
         {
-            if (!await _readBookCategoryRepository.ExistsAsync(x => x.Id == categoryId))
+            if (!_readBookCategoryRepository.Exists(x => x.Id == categoryId))
                 throw new CategoryNotFoundException();
         }
     }

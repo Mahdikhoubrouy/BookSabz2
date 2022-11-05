@@ -17,10 +17,15 @@ namespace BookSabz.Domain.BookCategoryAgg.Services
             _readBookCategoryRepository = readBookCategoryRepository;
         }
 
-        public async void CheckThatThisRecordAlreadyExists(string CategoryName)
+        public void CheckThatThisRecordAlreadyExists(string CategoryName)
         {
-            if (await _readBookCategoryRepository.ExistsAsync(x => x.Name == CategoryName))
-                throw new BookCategoryDuplicatedRecordException();
+
+            var res = _readBookCategoryRepository.Exists(x => x.Name == CategoryName);
+
+            if (res)
+            {
+                throw new BookCategoryDuplicatedRecordException("error");
+            }
         }
     }
 }

@@ -18,12 +18,12 @@ namespace BookSabz.Infrastructure.EFCore.Search
             _dbContext = dbcontext;
         }
 
-        public List<SearchViewModel> SearchAnyValue(string value)
+        public List<SearchViewModel> SearchAnyValue(Domain.SearchAgg.Search command)
         {
             return _dbContext.Books
                     .AsNoTracking()
                     .Include(x => x.BookCategory)
-                    .Where(x => x.Name.Contains(value) || x.BookCategory.Name.Contains(value) || x.Author.Contains(value))
+                    .Where(x => x.Name.Contains(command.Value) || x.BookCategory.Name.Contains(command.Value) || x.Author.Contains(command.Value))
                     .Select(x => new SearchViewModel
                     {
                         Id = x.Id,

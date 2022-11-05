@@ -2,7 +2,7 @@
 @model BookSabz.Pages.Book_DetailsModel
 @addTagHelper *,TagHelpers
 @{
-    ViewData["Title"]= "کتاب : "+ Model.Book.Name;
+    ViewData["Title"] = "کتاب : " + Model.Book.Name;
 }
 
 
@@ -13,7 +13,7 @@
                 <h3>دسته بندی : @Model.Book.CategoryName</h3>
                 <br />
                 <br />
-               
+
                 <p>@Model.Book.Description</p>
 
                 <br />
@@ -23,11 +23,11 @@
                 <br />
                 <a href="~/Books/Downloads/Books/@Model.Book.FilePath" class="btn">دانلود کتاب</a>
             </div>
-        
+
             <div class="image">
-                <img src="~/Books/images/@Model.Book.ImagePath" alt="عکس کتاب">
+                <img src="~/Books/images/@Model.Book.ImagePath" alt="عکس کتاب" >
             </div>
-        
+
         </section>
 
 

@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddDbContext<BookSabzContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("booksabz")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("me")));
 
 
 builder.Services.AddBookSabzService();

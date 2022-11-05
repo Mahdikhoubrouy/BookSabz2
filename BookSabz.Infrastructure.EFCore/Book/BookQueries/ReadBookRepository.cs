@@ -24,7 +24,8 @@ namespace BookSabz.Infrastructure.EFCore.BookRep.BookQueries
                 {
                     Author = x.Author,
                     ImagePath = x.ImagePath,
-                    Name = x.Name
+                    Name = x.Name,
+                    Id = x.Id
                 }).ToList();
         }
 

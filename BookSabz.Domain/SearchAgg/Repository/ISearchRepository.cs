@@ -10,6 +10,6 @@ namespace BookSabz.Domain.SearchAgg.Repository
 {
 	public interface ISearchRepository
 	{
-		List<SearchViewModel> SearchAnyValue(string value);
+		List<SearchViewModel> SearchAnyValue(Search command);
 	}
 }

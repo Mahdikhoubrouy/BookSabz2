@@ -47,7 +47,6 @@ namespace BookSabz.Pages.Admin
                 return Page();
             }
 
-
             try
             {
                 _bookCategoryApplication.Create(new CreateBookCategory
@@ -55,11 +54,12 @@ namespace BookSabz.Pages.Admin
                     Name = category.CategoryName
                 });
             }
-            catch 
+            catch
             {
                 ErrorMessage = "نام وارد شده تکراری است";
                 return Page();
             }
+
             return RedirectToPage("/Admin/CreateCategory");
         }
     }

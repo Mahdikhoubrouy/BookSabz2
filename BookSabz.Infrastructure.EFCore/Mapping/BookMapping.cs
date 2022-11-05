@@ -11,7 +11,6 @@ namespace BookSabz.Infrastructure.EFCore.Mapping
 {
     public class BookMapping : IEntityTypeConfiguration<Book>
     {
-        // TODO: set configuration ...
         public void Configure(EntityTypeBuilder<Book> builder)
         {
             builder.HasKey(x => x.Id);

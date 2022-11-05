@@ -20,6 +20,7 @@ namespace BookSabz.Core.Infrastructure.WriteRepository
         public void Create(T entity)
         {
             _dbContext.Add<T>(entity);
+
         }
     }
 }

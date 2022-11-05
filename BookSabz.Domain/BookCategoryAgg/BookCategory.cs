@@ -19,6 +19,7 @@ namespace BookSabz.Domain.BookCategoryAgg
 
         public BookCategory(string name, IBookCategoryValidatorService _bookCategoryValidatorService)
         {
+
             _bookCategoryValidatorService.CheckThatThisRecordAlreadyExists(name);
 
             Name = name;

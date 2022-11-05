@@ -28,6 +28,7 @@ namespace BookSabz.Domain.BookAgg
 
         public Book(string name, string image, string author, string publishYear, string filePath, string description, int bookCategoryId, IBookValidatorService _ValidatorService)
         {
+
             _ValidatorService.CheckBookCategoryIdAlreadyExists(bookCategoryId);
 
             Name = name;
@@ -69,7 +70,7 @@ namespace BookSabz.Domain.BookAgg
         {
             IsVisible = true;
         }
-        
+
         public void UnVisible()
         {
             IsVisible = false;

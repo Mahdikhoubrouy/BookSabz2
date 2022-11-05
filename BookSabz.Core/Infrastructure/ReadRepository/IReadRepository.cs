@@ -7,6 +7,6 @@ namespace BookSabz.Core.Infrastructure.ReadRepository
     {
         Task<T> GetAsync(Tkey id);
         Task<List<T>> GetAllAsNoTrackingAsync();
-        Task<bool> ExistsAsync(Expression<Func<T, bool>> expression);
+        bool Exists(Expression<Func<T, bool>> expression);
     }
 }

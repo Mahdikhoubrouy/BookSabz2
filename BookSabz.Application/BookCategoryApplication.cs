@@ -2,8 +2,10 @@
 using BookSabz.Application.Contracts.BookCategory.Models;
 using BookSabz.Core.Infrastructure;
 using BookSabz.Domain.BookCategoryAgg;
+using BookSabz.Domain.BookCategoryAgg.BookCategoryException;
 using BookSabz.Domain.BookCategoryAgg.Services;
 using BookSabz.Infrastructure.EFCore.BookRep;
+using Microsoft.Extensions.Logging;
 
 namespace BookSabz.Application
 {
@@ -11,16 +13,20 @@ namespace BookSabz.Application
     {
         private readonly IBookCategoryUnitOfWork _bookCategoryUnitOfWork;
         private readonly IBookCategoryValidatorService _bookCategoryValidatorService;
-
-        public BookCategoryApplication(IBookCategoryUnitOfWork bookCategoryUnitOfWork, IBookCategoryValidatorService bookCategoryValidatorService)
+        private readonly ILogger<BookCategoryApplication> _logger;
+        public BookCategoryApplication(IBookCategoryUnitOfWork bookCategoryUnitOfWork, IBookCategoryValidatorService bookCategoryValidatorService, ILogger<BookCategoryApplication> logger)
         {
             _bookCategoryUnitOfWork = bookCategoryUnitOfWork;
             _bookCategoryValidatorService = bookCategoryValidatorService;
+            _logger = logger;
         }
 
         public void Create(CreateBookCategory command)
         {
-            _bookCategoryUnitOfWork.WriteBookCategory.Create(new BookCategory(command.Name, _bookCategoryValidatorService));
+            var book = new BookCategory(command.Name, _bookCategoryValidatorService);
+
+            _bookCategoryUnitOfWork.WriteBookCategory.Create(book);
+
             _bookCategoryUnitOfWork.SaveChanges();
         }
 

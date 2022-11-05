@@ -19,7 +19,5 @@ namespace BookSabz.Infrastructure.EFCore.BookCategoryRepo.BookCategoryCommand
             _dbContext = dbContext;
         }
 
-
-
     }
 }

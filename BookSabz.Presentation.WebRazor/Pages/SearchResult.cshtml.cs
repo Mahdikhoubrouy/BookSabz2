@@ -1,4 +1,4 @@
-using BookSabz.Application.Contracts.Search;
+﻿using BookSabz.Application.Contracts.Search;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -10,6 +10,7 @@ namespace BookSabz.Presentation.WebRazor.Pages
 
         private readonly ISearchApplication _searchApplication;
 
+
         public SearchResultModel(ISearchApplication searchApplication)
         {
             _searchApplication = searchApplication;
@@ -17,6 +18,7 @@ namespace BookSabz.Presentation.WebRazor.Pages
 
         public RedirectToPageResult OnGet()
         {
+            SearchResult = new List<SearchViewModel>();
             return RedirectToPage("/Index");
         }
 
@@ -25,7 +27,14 @@ namespace BookSabz.Presentation.WebRazor.Pages
             if (!ModelState.IsValid)
                 return RedirectToPage("/Index");
 
-            SearchResult = _searchApplication.Search(Search);
+            try
+            {
+                SearchResult = _searchApplication.Search(Search);
+            }
+            catch
+            {
+                return RedirectToPage("/index");
+            }
             return Page();
         }
 

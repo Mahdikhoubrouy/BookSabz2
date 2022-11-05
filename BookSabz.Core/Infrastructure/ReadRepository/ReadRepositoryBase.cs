@@ -18,14 +18,14 @@ namespace BookSabz.Core.Infrastructure.ReadRepository
             _dbContext = dbContext;
         }
 
-        public async Task<bool> ExistsAsync(Expression<Func<T, bool>> expression)
+        public bool Exists(Expression<Func<T, bool>> expression)
         {
-            return await _dbContext.Set<T>().AnyAsync(expression);
+            return _dbContext.Set<T>().Any(expression);
         }
 
         public async Task<List<T>> GetAllAsNoTrackingAsync()
         {
-            return await _dbContext.Set<T>().AsNoTracking().ToListAsync();
+            return _dbContext.Set<T>().AsNoTracking().ToList();
         }
 
         public async Task<T> GetAsync(Tkey id)
