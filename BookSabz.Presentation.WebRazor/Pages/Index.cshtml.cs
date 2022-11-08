@@ -1,4 +1,6 @@
-﻿using BookSabz.Application.Contracts.BookApp;
+﻿using AutoMapper;
+using BookSabz.Application.Contracts.Book.Models;
+using BookSabz.Application.Contracts.BookApp;
 using BookSabz.Application.Contracts.BookCategory;
 using BookSabz.Presentation.WebRazor.Helpers;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -14,24 +16,25 @@ namespace BookSabz.Presentation.WebRazor.Pages
         public List<ViewBookTagHelperModel> NewBook { get; set; }
 
 
-
         private readonly IBookApplication _book;
 
-        private readonly IBookCategoryApplication _bookCategoory;
 
-        public IndexModel(IBookApplication book, IBookCategoryApplication bookCategoory)
+        private readonly IMapper _mapper;
+
+
+        public IndexModel(IBookApplication book, IMapper mapper)
         {
             _book = book;
-            _bookCategoory = bookCategoory;
+            _mapper = mapper;
         }
 
 
         public void OnGet()
         {
 
+            PopularBook = _mapper.Map<List<BookListViewModel>, List<ViewBookTagHelperModel>>(_book.GetLisProposede());
 
-            PopularBook = GetBook.GetBookListExecutor(_book.GetLisProposede);
-            NewBook = GetBook.GetBookListExecutorWithParameter<DateTime>(_book.GetListByDateTime, DateTime.Now.AddDays(-7));
+            NewBook = _mapper.Map<List<BookListViewModel>, List<ViewBookTagHelperModel>>(_book.GetListByDateTime(DateTime.Now.AddDays(-7)));
 
         }
     }

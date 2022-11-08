@@ -1,4 +1,6 @@
-﻿using BookSabz.Application.Contracts.BookApp;
+﻿using AutoMapper;
+using BookSabz.Application.Contracts.Book.Models;
+using BookSabz.Application.Contracts.BookApp;
 using BookSabz.Presentation.WebRazor.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -23,20 +25,22 @@ namespace BookSabz.Presentation.WebRazor.Pages
 
 
         private readonly IBookApplication _book;
+        private readonly IMapper _mapper;
 
-        public BooksModel(IBookApplication book)
+        public BooksModel(IBookApplication book, IMapper mapper)
         {
             _book = book;
+            _mapper = mapper;
         }
 
         public void OnGet()
         {
-            historical = GetBook.GetBookListExecutorWithParameter<string>(_book.GetListByCategoryName, "تاریخی");
-            philosophical = GetBook.GetBookListExecutorWithParameter<string>(_book.GetListByCategoryName, "فلسفی");
-            Course = GetBook.GetBookListExecutorWithParameter<string>(_book.GetListByCategoryName, "درسی");
-            Religious = GetBook.GetBookListExecutorWithParameter<string>(_book.GetListByCategoryName, "دینی");
-            Psychology = GetBook.GetBookListExecutorWithParameter<string>(_book.GetListByCategoryName, "روانشناسی");
-            General = GetBook.GetBookListExecutorWithParameter<string>(_book.GetListByCategoryName, "عمومی");
+            historical = _mapper.Map<List<BookListViewModel>, List<ViewBookTagHelperModel>>(_book.GetListByCategoryName("تاریخی"));
+            philosophical = _mapper.Map<List<BookListViewModel>, List<ViewBookTagHelperModel>>(_book.GetListByCategoryName("فلسفی"));
+            Course = _mapper.Map<List<BookListViewModel>, List<ViewBookTagHelperModel>>(_book.GetListByCategoryName("درسی"));
+            Religious = _mapper.Map<List<BookListViewModel>, List<ViewBookTagHelperModel>>(_book.GetListByCategoryName("دینی"));
+            Psychology = _mapper.Map<List<BookListViewModel>, List<ViewBookTagHelperModel>>(_book.GetListByCategoryName("روانشناسی"));
+            General = _mapper.Map<List<BookListViewModel>, List<ViewBookTagHelperModel>>(_book.GetListByCategoryName("عمومی"));
         }
     }
 }

@@ -13,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<BookSabzContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("me")));
 
-
+builder.Services.AddAutoMapper(Assemblies.PresentationAssembly,Assemblies.InfrastuctureAssembly);
 builder.Services.AddBookSabzService();
 
 

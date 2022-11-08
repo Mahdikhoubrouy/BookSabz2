@@ -1,12 +1,21 @@
-﻿using BookSabz.Application.Contracts.Book.Models;
+﻿using AutoMapper;
+using BookSabz.Application.Contracts.Book.Models;
 using TagHelpers.TagHelperModel;
 
 namespace BookSabz.Presentation.WebRazor.Helpers
 {
     public class GetBook
     {
+        private readonly IMapper _mapper;
+
+        public GetBook(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
+
         public static List<ViewBookTagHelperModel> GetBookListExecutor(Func<List<BookListViewModel>> func)
         {
+            
             var invoke = func.Invoke();
 
             return invoke.Select(x => new ViewBookTagHelperModel

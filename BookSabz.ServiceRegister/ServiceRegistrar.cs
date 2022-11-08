@@ -17,6 +17,7 @@ using BookSabz.Infrastructure.EFCore.BookRep.BookQueries;
 using BookSabz.Infrastructure.EFCore.BookRepo.BookCommand;
 using BookSabz.Infrastructure.EFCore.Search;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace BookSabz.ServiceRegister
 {
@@ -49,6 +50,7 @@ namespace BookSabz.ServiceRegister
             services.AddScoped<IBookCategoryValidatorService, BookCategoryValidatorService>();
             return services;
         }
+
 
 
 
