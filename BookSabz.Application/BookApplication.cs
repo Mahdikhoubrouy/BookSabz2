@@ -37,7 +37,7 @@ namespace BookSabz.Application
         {
 
             var book = await _bookUnitOfWork.ReadBook.GetAsync(command.Id);
-            book.Edit(command.Name, command.ImagePath, command.Author, command.PublishYear, command.FilePath, command.Description);
+            book.Edit(command.Name, command.ImagePath, command.Author, command.PublishYear, command.FilePath, command.Description,command.BookCategoryId);
 
             _bookUnitOfWork.SaveChanges();
         }

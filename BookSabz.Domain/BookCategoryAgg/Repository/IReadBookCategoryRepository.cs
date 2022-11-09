@@ -9,5 +9,6 @@ namespace BookSabz.Domain.BookCategoryAgg.Repository
 {
     public interface IReadBookCategoryRepository : IReadRepository<int,BookCategory>
     {
+        Task<BookCategory> GetByName(string name);
     }
 }

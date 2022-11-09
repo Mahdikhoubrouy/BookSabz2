@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{F4DD2153-A76
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TagHelpers", "lib\TagHelpers\TagHelpers.csproj", "{B9FC6AE9-20EB-44A0-8DC8-F834AD386F56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookSabz.Presentation.WebRazor", "BookSabz.Presentation.WebRazor\BookSabz.Presentation.WebRazor.csproj", "{FFF147EA-BF73-4116-864E-F1A7C6CA472D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookSabz.Presentation.WebRazor", "BookSabz.Presentation.WebRazor\BookSabz.Presentation.WebRazor.csproj", "{FFF147EA-BF73-4116-864E-F1A7C6CA472D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -24,7 +24,7 @@ namespace BookSabz.ServiceRegister
     public static class ServiceRegistrar
     {
 
-        private static IServiceCollection AddApplicationService(this IServiceCollection services)
+        private static IServiceCollection AddApplicationService(IServiceCollection services)
         {
             services.AddScoped<IBookApplication, BookApplication>();
             services.AddScoped<IBookCategoryApplication, BookCategoryApplication>();
@@ -32,7 +32,7 @@ namespace BookSabz.ServiceRegister
             return services;
         }
 
-        private static IServiceCollection AddInfrastructureService(this IServiceCollection services)
+        private static IServiceCollection AddInfrastructureService(IServiceCollection services)
         {
             services.AddScoped<IReadBookRepository, ReadBookRepository>();
             services.AddScoped<IWriteBookRepository, WriteBookRepository>();
@@ -44,7 +44,7 @@ namespace BookSabz.ServiceRegister
             return services;
         }
 
-        private static IServiceCollection AddDomainService(this IServiceCollection services)
+        private static IServiceCollection AddDomainService(IServiceCollection services)
         {
             services.AddScoped<IBookValidatorService, BookValidatorService>();
             services.AddScoped<IBookCategoryValidatorService, BookCategoryValidatorService>();
@@ -56,9 +56,10 @@ namespace BookSabz.ServiceRegister
 
         public static IServiceCollection AddBookSabzService(this IServiceCollection services)
         {
-            services.AddApplicationService();
-            services.AddInfrastructureService();
-            services.AddDomainService();
+
+            AddApplicationService(services);
+            AddDomainService(services);
+            AddInfrastructureService(services);
 
             return services;
         }

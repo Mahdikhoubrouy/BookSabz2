@@ -1,0 +1,58 @@
+﻿@page "{id:long}"
+@model BookSabz.Presentation.WebRazor.Pages.Admin.EditBookModel
+@{
+    Layout = "_AdminLayout";
+    ViewData["AdminTitle"] = "ویرایش کتاب";
+}
+
+
+<div class="col-12 mb-3">
+    @if (Model.ErrorMessage != null)
+    {
+            <div class="alert alert-danger">
+            @Model.ErrorMessage
+            </div>
+    }
+    <div class="col-6 mr-auto ml-auto text-center">
+        <h1 class="border-bottom">ایجاد مقاله جدید</h1>
+    </div>
+</div>
+
+<form asp-page-handler="Edit" class="mr-auto ml-auto" method="post">
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="Book.Name"></label>
+            <input class="form-control" asp-for="Book.Name">
+            <span asp-validation-for="Book.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Book.Author"></label>
+            <input class="form-control" asp-for="Book.Author">
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Book.PublishYear"></label>
+            <input class="form-control" asp-for="Book.PublishYear">
+        </div>
+
+        <div class="form-group col-md-6">
+            <label asp-for="Book.CategoryId"></label>
+
+            <select class="form-select" aria-label="Default select example" asp-for="Book.CategoryId" asp-items="Model.Categories">
+
+            </select>
+            <span asp-validation-for="Book.CategoryId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-12">
+            <label asp-for="Book.Description"></label>
+            <textarea class="form-control" asp-for="Book.Description"></textarea>
+            <span asp-validation-for="Book.Description" class="text-danger"></span>
+        </div>
+
+            <input type="hidden" asp-for="Book.Id"/>
+
+    </div>
+    <a href="/Admin/Index" class="btn btn-danger">انصراف</a>
+    <button type="submit" class="btn btn-warning">ویرایش</button>
+</form>

@@ -14,7 +14,7 @@ namespace BookSabz.Infrastructure.EFCore.BookMapper
         public BookMappingProfile()
         {
             CreateMap<Book, BookListViewModel>();
-            CreateMap<Book, BookViewModel>();
+            CreateMap<Book, BookViewModel>().ForMember(x=>x.CategoryName,b=> b.MapFrom(z=>z.BookCategory.Name));
         }
     }
 }

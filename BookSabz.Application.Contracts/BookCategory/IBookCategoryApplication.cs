@@ -16,5 +16,6 @@ namespace BookSabz.Application.Contracts.BookCategory
 
         void UnDelete(int id);
 
+        Task<BookCategoryViewModel> GetByNameAsync(string name);
     }
 }

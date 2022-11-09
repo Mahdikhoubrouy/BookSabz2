@@ -45,7 +45,7 @@ namespace BookSabz.Domain.BookAgg
         }
 
 
-        public void Edit(string name, string image, string author, string publishYear, string filePath, string description)
+        public void Edit(string name, string image, string author, string publishYear, string filePath, string description, int bookcategoryid)
         {
             Name = name;
             ImagePath = image;
@@ -53,6 +53,7 @@ namespace BookSabz.Domain.BookAgg
             PublishYear = publishYear;
             FilePath = filePath;
             Description = description;
+            BookCategoryId = bookcategoryid;
         }
 
 
