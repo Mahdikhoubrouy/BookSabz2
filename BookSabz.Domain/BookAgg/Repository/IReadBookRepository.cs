@@ -15,5 +15,6 @@ namespace BookSabz.Domain.BookAgg.Repository
         List<BookListViewModel> GetListByCategoryName(string categoryName);
         List<BookListViewModel> GetListByExpression(Expression<Func<Book, bool>> expression);
         BookViewModel GetByExpression(Expression<Func<Book, bool>> expression);
+        List<Book> GetAllAsNoTracking(); 
     }
 }

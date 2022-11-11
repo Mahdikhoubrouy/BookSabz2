@@ -1,10 +1,10 @@
-﻿using BookSabz.Application.Contracts.Book.Models;
+﻿using AutoMapper;
+using BookSabz.Application.Contracts.Book.Models;
 using BookSabz.Application.Contracts.BookApp;
 using BookSabz.Core.Infrastructure;
 using BookSabz.Domain.BookAgg;
 using BookSabz.Domain.BookAgg.Services;
 using BookSabz.Infrastructure.EFCore.BookRep;
-
 
 namespace BookSabz.Application
 {
@@ -15,12 +15,16 @@ namespace BookSabz.Application
 
         private readonly IBookValidatorService _bookValidatorService;
 
-        public BookApplication(IBookUnitOfWork bookUnitOfWork, IBookValidatorService bookValidatorService)
+        private readonly IMapper _mapper;
+
+        public BookApplication(IBookUnitOfWork bookUnitOfWork, IBookValidatorService bookValidatorService, IMapper mapper)
         {
             _bookUnitOfWork = bookUnitOfWork;
             _bookValidatorService = bookValidatorService;
-
+            _mapper = mapper;
         }
+
+
         #region Command
 
         public void Create(CreateBook command)
@@ -37,11 +41,16 @@ namespace BookSabz.Application
         {
 
             var book = await _bookUnitOfWork.ReadBook.GetAsync(command.Id);
-            book.Edit(command.Name, command.ImagePath, command.Author, command.PublishYear, command.FilePath, command.Description,command.BookCategoryId);
+            book.Edit(command.Name, command.ImagePath, command.Author, command.PublishYear, command.FilePath, command.Description, command.BookCategoryId);
 
             _bookUnitOfWork.SaveChanges();
         }
 
+        public List<BookManagementModel> GetAll()
+        {
+            var books = _bookUnitOfWork.ReadBook.GetAllAsNoTracking();
+            return _mapper.Map<List<Book>, List<BookManagementModel>>(books);
+        }
 
         #endregion
 
@@ -76,14 +85,14 @@ namespace BookSabz.Application
         #region Command Activity
 
 
-        public async void Delete(long id)
+        public async Task Delete(long id)
         {
             var book = await _bookUnitOfWork.ReadBook.GetAsync(id);
             book.Delete();
             _bookUnitOfWork.SaveChanges();
 
         }
-        public async void UnDelete(long id)
+        public async Task UnDelete(long id)
         {
             var book = await _bookUnitOfWork.ReadBook.GetAsync(id);
 
@@ -92,7 +101,7 @@ namespace BookSabz.Application
             _bookUnitOfWork.SaveChanges();
         }
 
-        public async void UnVisible(long id)
+        public async Task UnVisible(long id)
         {
 
             var book = await _bookUnitOfWork.ReadBook.GetAsync(id);
@@ -102,7 +111,7 @@ namespace BookSabz.Application
             _bookUnitOfWork.SaveChanges();
         }
 
-        public async void Visible(long id)
+        public async Task Visible(long id)
         {
 
             var book = await _bookUnitOfWork.ReadBook.GetAsync(id);

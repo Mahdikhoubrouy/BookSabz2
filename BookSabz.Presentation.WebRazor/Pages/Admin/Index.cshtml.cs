@@ -1,26 +1,57 @@
+using AutoMapper;
+using BookSabz.Application;
+using BookSabz.Application.Contracts.Book.Models;
+using BookSabz.Application.Contracts.BookApp;
+using BookSabz.Application.Contracts.Management.BookManagement;
 using BookSabz.Presentation.WebRazor.Helpers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Data;
 
 namespace BookSabz.Pages.Admin
 {
+    [Authorize(Roles = "admin")]
     public class IndexModel : PageModel
     {
+        public List<BookManagementModel> Books { get; set; }
 
-        private readonly AuthAdmin _auth;
+        private readonly IBookApplication _book;
 
-        public IndexModel(AuthAdmin auth)
+        public IndexModel(IBookApplication book)
         {
-            _auth = auth;
+            _book = book;
         }
 
         public IActionResult OnGet()
         {
-            var isLogin = _auth.CheckLogin();
-            if (!isLogin)
-                return RedirectToPage("/Admin/Login");
-
+            Books = _book.GetAll();
             return Page();
+
+        }
+
+        public async Task<IActionResult> OnGetRestore(long id)
+        {
+            await _book.UnDelete(id);
+            return RedirectToPage("/Admin/Index");
+        }
+
+        public async Task<IActionResult> OnGetDelete(long id)
+        {
+            await _book.Delete(id);
+            return RedirectToPage("/Admin/Index");
+        }
+
+        public async Task<IActionResult> OnGetUnvisible(long id)
+        {
+            await _book.UnVisible(id);
+            return RedirectToPage("/Admin/Index");
+        }
+
+        public async Task<IActionResult> OnGetVisible(long id)
+        {
+            await _book.Visible(id);
+            return RedirectToPage("/Admin/Index");
         }
     }
 }

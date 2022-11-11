@@ -18,19 +18,21 @@ namespace BookSabz.Application.Contracts.BookApp
 
         List<BookListViewModel> GetListLast();
 
+        List<BookManagementModel> GetAll();
+
         BookViewModel GetById(long id);
 
         void Create(CreateBook command);
         
         void Edit(EditBook command);
 
-        void Delete(long id);
+        Task Delete(long id);
 
-        void UnDelete(long id);
+        Task UnDelete(long id);
 
-        void Visible(long id);
+        Task Visible(long id);
 
-        void UnVisible(long id);
+        Task UnVisible(long id);
 
     }
 }

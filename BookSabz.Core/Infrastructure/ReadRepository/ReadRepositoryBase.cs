@@ -23,11 +23,6 @@ namespace BookSabz.Core.Infrastructure.ReadRepository
             return _dbContext.Set<T>().Any(expression);
         }
 
-        public async Task<List<T>> GetAllAsNoTrackingAsync()
-        {
-            return _dbContext.Set<T>().AsNoTracking().ToList();
-        }
-
         public async Task<T> GetAsync(Tkey id)
         {
             return await _dbContext.FindAsync<T>(id);

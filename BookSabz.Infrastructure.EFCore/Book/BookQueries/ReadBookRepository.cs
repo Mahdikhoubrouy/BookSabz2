@@ -39,7 +39,7 @@ namespace BookSabz.Infrastructure.EFCore.BookRep.BookQueries
             return _dbContext.Books.Include(x => x.BookCategory).Where(x => x.Id == id)
                  .Select(s => _mapper.Map<Book, BookViewModel>(s)).SingleOrDefault()!;
 
-		}
+        }
 
         public List<BookListViewModel> GetListByExpression(Expression<Func<Book, bool>> expression)
         {
@@ -47,6 +47,14 @@ namespace BookSabz.Infrastructure.EFCore.BookRep.BookQueries
                 .Where(expression)
                 .Select(x => _mapper.Map<Book, BookListViewModel>(x)).ToList();
 
+        }
+
+        public List<Book> GetAllAsNoTracking()
+        {
+            return _dbContext.Books
+                .Include(x => x.BookCategory)
+                .AsNoTracking()
+                .ToList();
         }
     }
 }

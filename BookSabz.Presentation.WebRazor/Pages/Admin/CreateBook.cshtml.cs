@@ -4,11 +4,14 @@ using BookSabz.Application.Contracts.BookCategory;
 using BookSabz.Application.Contracts.BookCategory.Models;
 using BookSabz.Presentation.WebRazor.AdminModel;
 using BookSabz.Presentation.WebRazor.Helpers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Data;
 
 namespace BookSabz.Pages.Admin
 {
+    [Authorize(Roles = "admin")]
     public class CreateBookModel : PageModel
     {
         [BindProperty]
@@ -19,25 +22,19 @@ namespace BookSabz.Pages.Admin
         private readonly IBookCategoryApplication _bookCategoryApplication;
         private readonly IBookApplication _bookApplication;
         private Microsoft.AspNetCore.Hosting.IHostingEnvironment _environment { get; set; }
-        private readonly AuthAdmin _auth;
 
-        public CreateBookModel(IBookCategoryApplication bookCategoryApplication, IBookApplication bookApplication, Microsoft.AspNetCore.Hosting.IHostingEnvironment environment, AuthAdmin auth)
+        public CreateBookModel(IBookCategoryApplication bookCategoryApplication, IBookApplication bookApplication, Microsoft.AspNetCore.Hosting.IHostingEnvironment environment)
         {
             _bookCategoryApplication = bookCategoryApplication;
             _bookApplication = bookApplication;
             _environment = environment;
-            _auth = auth;
         }
 
         [TempData]
         public string ErrorMessage { get; set; }
 
         public async Task<IActionResult> OnGet()
-        {
-            var isLogin = _auth.CheckLogin();
-            if (!isLogin)
-                return RedirectToPage("/Admin/Login");
-
+        { 
             Categories = await _bookCategoryApplication.GetListAsync();
 
             return Page();
@@ -45,11 +42,6 @@ namespace BookSabz.Pages.Admin
 
         public async Task<IActionResult> OnPostCreate(CreateBookPresentationModel Book)
         {
-            var isLogin = _auth.CheckLogin();
-            if (!isLogin)
-                return RedirectToPage("/Admin/Login");
-
-
             if (!ModelState.IsValid)
             {
                 ErrorMessage = "مقادیر وارد شده صحیح نمی باشد";

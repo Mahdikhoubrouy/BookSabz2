@@ -38,7 +38,7 @@ namespace BookSabz.Domain.BookAgg
             FilePath = filePath;
             Description = description;
             IsDeleted = false;
-            IsVisible = false;
+            IsVisible = true;
             BookCategoryId = bookCategoryId;
 
 

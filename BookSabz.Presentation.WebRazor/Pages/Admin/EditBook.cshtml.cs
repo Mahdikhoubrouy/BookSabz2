@@ -5,12 +5,14 @@ using BookSabz.Application.Contracts.BookCategory;
 using BookSabz.Application.Contracts.BookCategory.Models;
 using BookSabz.Presentation.WebRazor.AdminModel;
 using BookSabz.Presentation.WebRazor.PresentationModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BookSabz.Presentation.WebRazor.Pages.Admin
 {
+	[Authorize(Roles = "admin")]
 	public class EditBookModel : PageModel
 	{
 		public EditBookPresentationModel Book { get; set; }

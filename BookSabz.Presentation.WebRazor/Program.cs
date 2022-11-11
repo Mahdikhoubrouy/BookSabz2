@@ -5,37 +5,58 @@ using BookSabz.ServiceRegister;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using BookSabz.Presentation.WebRazor.Db;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
+# region DbContext
 
 builder.Services.AddDbContext<BookSabzContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("me")));
 
-builder.Services.AddAutoMapper(Assemblies.PresentationAssembly,Assemblies.InfrastuctureAssembly,Assemblies.ApplicationAssembly);
+builder.Services.AddDbContext<BookSabzIdentityContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("me")));
+
+#endregion
+
+#region Identity
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => { options.SignIn.RequireConfirmedAccount = true; })
+    .AddRoles<IdentityRole>()
+    .AddClaimsPrincipalFactory<UserClaimsPrincipalFactory<IdentityUser, IdentityRole>>()
+    .AddDefaultUI()
+    .AddEntityFrameworkStores<BookSabzIdentityContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.AddAuthentication();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("SiteManagement", policy =>
+          policy.RequireRole("admin"));
+});
+
+
+#endregion
+
+#region Services
+builder.Services.AddAutoMapper(Assemblies.PresentationAssembly, Assemblies.InfrastuctureAssembly, Assemblies.ApplicationAssembly);
 builder.Services.AddBookSabzService();
-
-
-
 builder.Services.AddValidatorsFromAssemblyContaining<BookValidator>();
-
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddFluentValidationClientsideAdapters();
-
-
-
-builder.Services.AddSingleton<AuthAdmin>();
+#endregion
 
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -43,7 +64,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();

@@ -2,13 +2,11 @@
 using BookSabz.Application.Contracts.BookApp;
 using BookSabz.Application.Contracts.BookCategory;
 using BookSabz.Application.Contracts.Search;
-using BookSabz.Core.Infrastructure;
 using BookSabz.Domain.BookAgg.Repository;
 using BookSabz.Domain.BookAgg.Services;
 using BookSabz.Domain.BookCategoryAgg.Repository;
 using BookSabz.Domain.BookCategoryAgg.Services;
 using BookSabz.Domain.SearchAgg.Repository;
-using BookSabz.Infrastructure.EFCore;
 using BookSabz.Infrastructure.EFCore.BookCategoeryRepo;
 using BookSabz.Infrastructure.EFCore.BookCategoryRepo.BookCategoryCommand;
 using BookSabz.Infrastructure.EFCore.BookCategoryRepo.BookCategoryQueries;
@@ -17,7 +15,6 @@ using BookSabz.Infrastructure.EFCore.BookRep.BookQueries;
 using BookSabz.Infrastructure.EFCore.BookRepo.BookCommand;
 using BookSabz.Infrastructure.EFCore.Search;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 
 namespace BookSabz.ServiceRegister
 {
@@ -26,7 +23,7 @@ namespace BookSabz.ServiceRegister
 
         private static IServiceCollection AddApplicationService(IServiceCollection services)
         {
-            services.AddScoped<IBookApplication, BookApplication>();
+            services.AddTransient<IBookApplication, BookApplication>();
             services.AddScoped<IBookCategoryApplication, BookCategoryApplication>();
             services.AddScoped<ISearchApplication, SearchApplication>();
             return services;

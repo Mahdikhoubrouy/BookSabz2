@@ -2,17 +2,16 @@
 using BookSabz.Application.Contracts.BookCategory.Models;
 using BookSabz.Presentation.WebRazor.Helpers;
 using BookSabz.Presentation.WebRazor.PresentationModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Data;
 
 namespace BookSabz.Pages.Admin
 {
+    [Authorize(Roles = "admin")]
     public class CreateCategoryModel : PageModel
     {
-
-        private readonly AuthAdmin _auth;
-
-
         public CreateBookCategoryPresentationModel Category { get; set; }
 
         [TempData]
@@ -20,26 +19,19 @@ namespace BookSabz.Pages.Admin
 
         private readonly IBookCategoryApplication _bookCategoryApplication;
 
-        public CreateCategoryModel(IBookCategoryApplication bookCategoryApplication, AuthAdmin auth)
+        public CreateCategoryModel(IBookCategoryApplication bookCategoryApplication)
         {
             _bookCategoryApplication = bookCategoryApplication;
-            _auth = auth;
         }
 
 
         public IActionResult OnGet()
         {
-            var isLogin = _auth.CheckLogin();
-            if (!isLogin)
-                return RedirectToPage("/Admin/Login");
             return Page();
         }
 
         public IActionResult OnPostCreate(CreateBookCategoryPresentationModel category)
         {
-            var isLogin = _auth.CheckLogin();
-            if (!isLogin)
-                return RedirectToPage("/Admin/Login");
 
             if (!ModelState.IsValid)
             {

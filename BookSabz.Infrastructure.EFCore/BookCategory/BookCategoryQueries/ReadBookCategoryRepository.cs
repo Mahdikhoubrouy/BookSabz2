@@ -18,9 +18,14 @@ namespace BookSabz.Infrastructure.EFCore.BookCategoryRepo.BookCategoryQueries
             _dbContext = dbContext;
         }
 
-		public async Task<BookCategory> GetByName(string name)
-		{
-           return await _dbContext.BookCategories.SingleOrDefaultAsync(x => x.Name == name)!;
-		}
-	}
+        public Task<List<BookCategory>> GetAllAsNoTrackingAsync()
+        {
+            return _dbContext.BookCategories.AsNoTracking().ToListAsync();
+        }
+
+        public Task<BookCategory> GetByName(string name)
+        {
+            return _dbContext.BookCategories.SingleOrDefaultAsync(x => x.Name == name)!;
+        }
+    }
 }
