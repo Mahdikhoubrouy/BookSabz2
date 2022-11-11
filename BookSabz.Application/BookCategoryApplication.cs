@@ -35,7 +35,7 @@ namespace BookSabz.Application
 			_bookCategoryUnitOfWork.SaveChanges();
 		}
 
-		public async void Delete(int id)
+		public async Task Delete(int id)
 		{
 			var bookCategory = await _bookCategoryUnitOfWork.ReadBookCategory.GetAsync(id);
 			bookCategory.Delete();
@@ -84,7 +84,7 @@ namespace BookSabz.Application
 			_bookCategoryUnitOfWork.SaveChanges();
 		}
 
-		public async void UnDelete(int id)
+		public async Task UnDelete(int id)
 		{
 
 			var bookCategory = await _bookCategoryUnitOfWork.ReadBookCategory.GetAsync(id);

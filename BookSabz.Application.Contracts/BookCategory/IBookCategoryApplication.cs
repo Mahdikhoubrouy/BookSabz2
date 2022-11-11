@@ -12,9 +12,9 @@ namespace BookSabz.Application.Contracts.BookCategory
 
         Task<RenameBookCategory> Get(int id);
 
-        void Delete(int id);
+        Task Delete(int id);
 
-        void UnDelete(int id);
+        Task UnDelete(int id);
 
         Task<BookCategoryViewModel> GetByNameAsync(string name);
     }

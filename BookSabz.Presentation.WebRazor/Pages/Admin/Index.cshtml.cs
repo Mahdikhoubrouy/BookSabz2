@@ -1,13 +1,8 @@
-using AutoMapper;
-using BookSabz.Application;
 using BookSabz.Application.Contracts.Book.Models;
 using BookSabz.Application.Contracts.BookApp;
-using BookSabz.Application.Contracts.Management.BookManagement;
-using BookSabz.Presentation.WebRazor.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Data;
 
 namespace BookSabz.Pages.Admin
 {

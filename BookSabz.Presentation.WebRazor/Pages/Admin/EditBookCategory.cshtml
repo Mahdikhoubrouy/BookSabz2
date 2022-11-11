@@ -1,0 +1,33 @@
+﻿@page
+@model BookSabz.Presentation.WebRazor.Pages.Admin.EditBookCategoryModel
+@{
+    Layout = "_AdminLayout";
+    ViewData["AdminTitle"] = "ویرایش کتگوری";
+}
+
+
+
+
+<div class="col-12 mb-3">
+	@if (Model.ErrorMessage != null)
+	{
+		<div class="alert alert-danger">
+			@Model.ErrorMessage
+		</div>
+	}
+	<div class="col-6 mr-auto ml-auto text-center">
+		<h1 class="border-bottom">ایجاد کتگوری جدید</h1>
+	</div>
+</div>
+
+<form asp-page-handler="Create" class="mr-auto ml-auto" method="post">
+	<div class="form-row">
+		<div class="form-group col-md-12">
+			<label asp-for="Category.Name"></label>
+			<input class="form-control" asp-for="Category.Name">
+			<span asp-validation-for="Category.Name" class="text-danger"></span>
+		</div>
+	</div>
+	<a href="/Admin/Index" class="btn btn-danger">انصراف</a>
+	<button type="submit" class="btn btn-warning">ویرایش</button>
+</form>
