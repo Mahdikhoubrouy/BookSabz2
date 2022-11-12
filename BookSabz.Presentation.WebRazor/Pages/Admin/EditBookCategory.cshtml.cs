@@ -9,6 +9,7 @@ namespace BookSabz.Presentation.WebRazor.Pages.Admin
 	public class EditBookCategoryModel : PageModel
 	{
 
+		[BindProperty]
 		public RenameBookCategory Category { get; set; }
 
 		[TempData]
@@ -34,14 +35,14 @@ namespace BookSabz.Presentation.WebRazor.Pages.Admin
 		}
 
 
-		public async Task<IActionResult> OnPostRename(RenameBookCategory bookCategoory)
+		public async Task<IActionResult> OnPostRename(RenameBookCategory category)
 		{
 			if (!ModelState.IsValid)
 			{
 				ErrorMessage = "مقدار وارد شده درست نیست !";
 				return Page();
 			}
-			await _bookCategoryApplication.Rename(bookCategoory);
+			await _bookCategoryApplication.Rename(category);
 
 			return RedirectToPage("/Admin/BookCategoryList");
 		}

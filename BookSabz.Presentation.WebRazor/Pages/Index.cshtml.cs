@@ -44,11 +44,11 @@ namespace BookSabz.Presentation.WebRazor.Pages
             NewBook = _mapper.Map<List<BookListViewModel>, List<ViewBookTagHelperModel>>(_book.GetListByDateTime(DateTime.Now.AddDays(-7)));
 
 
-            //await _user.SetEmailAsync(_user.FindByNameAsync("miticyber").GetAwaiter().GetResult(), "Test1234!");
+            //await _user.AddPasswordAsync(_user.FindByNameAsync("winaj31786@lidely.com").GetAwaiter().GetResult(), "Test1234!");
             //await _user.CreateAsync(new IdentityUser("miticyber"));
             //await _role.CreateAsync(new IdentityRole("admin"));
 
-            //await _user.AddToRoleAsync(_user.FindByNameAsync("winaj31786@lidely.com").GetAwaiter().GetResult(), "admin");
+            //await _user.AddToRoleAsync(_user.FindByNameAsync("leloka8215@lance7.com"), "admin");
 
         }
     }

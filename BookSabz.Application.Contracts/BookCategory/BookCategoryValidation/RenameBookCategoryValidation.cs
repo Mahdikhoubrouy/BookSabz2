@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace BookSabz.Application.Contracts.BookCategory.BookCategoryValidation
 {
-    public class BookCategoryValidator : AbstractValidator<BookCategoryBase>
-    {
-        public BookCategoryValidator()
-        {
-            RuleFor(x => x.Name).NotNull().NotEmpty().Length(2, 25).WithMessage("مقدار وارد شده صحیح نیست !");
-        }
-    }
+	public class RenameBookCategoryValidation : AbstractValidator<RenameBookCategory>
+	{
+		public RenameBookCategoryValidation()
+		{
+			RuleFor(x => x.Name).NotEmpty().MinimumLength(3).MaximumLength(50);
+		}
+	}
 }

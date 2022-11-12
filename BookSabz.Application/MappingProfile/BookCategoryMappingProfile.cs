@@ -13,7 +13,8 @@ namespace BookSabz.Application.MappingProfile
 	{
 		public BookCategoryMappingProfile()
 		{
-			CreateMap<BookCategory, BookCategoryViewModel>();
+			CreateMap<BookCategory, BookCategoryViewModel>().ForMember(x=>x.CreationDate,z=>z.MapFrom(a=>a.CreationDate.ToString()));
+			CreateMap<BookCategory, RenameBookCategory>();
 		}
 	}
 }
