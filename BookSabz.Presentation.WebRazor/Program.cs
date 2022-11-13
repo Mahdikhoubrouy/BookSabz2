@@ -43,7 +43,7 @@ builder.Services.AddAuthorization(options =>
 #endregion
 
 #region Services
-builder.Services.AddAutoMapper(Assemblies.PresentationAssembly, Assemblies.InfrastuctureAssembly, Assemblies.ApplicationAssembly);
+builder.Services.AddAutoMapper(Assemblies.PresentationAssembly, Assemblies.ApplicationAssembly);
 builder.Services.AddBookSabzService();
 builder.Services.AddValidatorsFromAssemblyContaining<BookValidator>();
 builder.Services.AddFluentValidationAutoValidation();
