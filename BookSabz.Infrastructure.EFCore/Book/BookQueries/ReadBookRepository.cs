@@ -23,7 +23,7 @@ namespace BookSabz.Infrastructure.EFCore.BookRep.BookQueries
 
 			return _dbContext.Books.Include(x => x.BookCategory)
 				.AsNoTracking()
-				.Where(x => x.BookCategory.Name == categoryName)
+				.Where(x => x.BookCategory.Name == categoryName && x.IsDeleted == false)
 				.Select(s => new BookListViewModel
 				{
 					Author = s.Author,
@@ -48,12 +48,11 @@ namespace BookSabz.Infrastructure.EFCore.BookRep.BookQueries
 					FilePath = x.FilePath,
 					PublishYear = x.PublishYear
 				}).FirstOrDefault()!;
-
 		}
 
 		public BookViewModel GetById(long id)
 		{
-			return _dbContext.Books.Include(x => x.BookCategory).Where(x => x.Id == id)
+			return _dbContext.Books.Include(x => x.BookCategory).Where(x => x.Id == id && x.IsDeleted == false)
 				 .Select(x => new BookViewModel
 				 {
 					 Author = x.Author,
@@ -86,6 +85,7 @@ namespace BookSabz.Infrastructure.EFCore.BookRep.BookQueries
 		{
 			return _dbContext.Books
 				.Include(x => x.BookCategory)
+				.Where(x => x.IsDeleted == false)
 				.AsNoTracking()
 				.ToList();
 		}

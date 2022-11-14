@@ -62,7 +62,7 @@ namespace BookSabz.Application
 
         public List<BookListViewModel> GetLisProposede()
         {
-            return _bookUnitOfWork.ReadBook.GetListByExpression(x => x.DownloadCount == 0);
+            return _bookUnitOfWork.ReadBook.GetListByExpression(x => x.DownloadCount == 0 && x.IsDeleted == false);
         }
 
         public List<BookListViewModel> GetListByCategoryName(string CategoryName)
@@ -77,7 +77,7 @@ namespace BookSabz.Application
 
         public List<BookListViewModel> GetListLast()
         {
-            return _bookUnitOfWork.ReadBook.GetListByExpression(x => x.CreationDate > DateTime.Now.AddDays(-7));
+            return _bookUnitOfWork.ReadBook.GetListByExpression(x => x.CreationDate > DateTime.Now.AddDays(-7) && x.IsDeleted == false);
         }
 
         #endregion
