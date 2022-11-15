@@ -75,7 +75,7 @@ namespace BookSabz.Presentation.WebRazor.Pages.Admin
 		}
 
 
-		public IActionResult OnPostEdit(EditBookPresentationModel book)
+		public async Task<IActionResult> OnPostEdit(EditBookPresentationModel book)
 		{
 			var Orgbook = _bookApplication.GetById(book.Id);
 
@@ -95,7 +95,7 @@ namespace BookSabz.Presentation.WebRazor.Pages.Admin
 				PublishYear = book.PublishYear,
 			};
 
-			_bookApplication.Edit(editedBook);
+			await _bookApplication.Edit(editedBook);
 
 			return RedirectToPage("/Admin/Index");
 

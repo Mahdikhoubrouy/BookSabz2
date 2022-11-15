@@ -24,7 +24,7 @@ namespace BookSabz.Application.Contracts.BookApp
 
         void Create(CreateBook command);
         
-        void Edit(EditBook command);
+        Task Edit(EditBook command);
 
         Task Delete(long id);
 

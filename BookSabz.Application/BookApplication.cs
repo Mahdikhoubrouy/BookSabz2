@@ -37,7 +37,7 @@ namespace BookSabz.Application
 
         }
 
-        public async void Edit(EditBook command)
+        public async Task Edit(EditBook command)
         {
 
             var book = await _bookUnitOfWork.ReadBook.GetAsync(command.Id);

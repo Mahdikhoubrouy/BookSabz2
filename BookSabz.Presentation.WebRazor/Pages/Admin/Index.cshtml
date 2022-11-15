@@ -8,8 +8,8 @@
 
 
 @section Styles{
-            <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
-                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+                <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 }
 <div class="container">
 <div class="row header" style="text-align:center;color:green">
@@ -32,38 +32,30 @@
 
             @foreach (var book in Model.Books)
             {
-            <tr>
-                <td>@book.Id</td>
-                <td>@book.Name</td>
-                <td>@book.Author</td>
-                <td>@book.CategoryName</td>
-                <td>@book.PublishYear</td>
-                    <td><img src="~/Books/images/@book.ImagePath" style="height:50px !important;"/></td>
-                    <td>
+                <tr>
+                    <td>@book.Id</td>
+                    <td>@book.Name</td>
+                    <td>@book.Author</td>
+                    <td>@book.CategoryName</td>
+                    <td>@book.PublishYear</td>
+                        <td><img src="~/Books/images/@book.ImagePath" style="height:50px !important;"/></td>
+                        <td>
 
-                        @if (book.IsDeleted == true)
-                        {
-
-                        <a asp-page="./Index" asp-page-handler="Restore" asp-route-id="@book.Id"><i class="fas fa-trash-restore"></i></a>
-                        }
-                        else
-                        {
-                    <a asp-page="./Index" asp-page-handler="Delete" asp-route-id="@book.Id"> <i class="fas fa-trash"></i></a>
-                        }
+                        <a asp-page="./Index" asp-page-handler="Delete" asp-route-id="@book.Id"> <i class="fas fa-trash"></i></a>
 
                         @if (book.IsVisible == true)
                         {
-                    <a asp-page="./Index" asp-page-handler="Unvisible" asp-route-id="@book.Id"><i class="fas fa-eye-slash "></i></a>
+                            <a asp-page="./Index" asp-page-handler="Unvisible" asp-route-id="@book.Id"><i class="fas fa-eye-slash "></i></a>
 
                         }
                         else
                         {
-                         <a asp-page="./Index" asp-page-handler="Visible" asp-route-id="@book.Id"><i class="fas fa-eye"></i></a>
+                                 <a asp-page="./Index" asp-page-handler="Visible" asp-route-id="@book.Id"><i class="fas fa-eye"></i></a>
                         }
 
-                                <a asp-page="./EditBook" asp-route-id="@book.Id"><i class="fas fa-edit"></i></a>
-                        </td>
-           </tr>
+                                    <a asp-page="./EditBook" asp-route-id="@book.Id"><i class="fas fa-edit"></i></a>
+                            </td>
+               </tr>
             }
 
 </tbody>
@@ -72,6 +64,6 @@
 
 
 @section Scripts{
-                    <script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-                    <script src="~/js/table.js"></script>
+                        <script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+                        <script src="~/js/table.js"></script>
 }
