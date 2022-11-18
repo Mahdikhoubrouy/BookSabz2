@@ -302,6 +302,7 @@ node_modules/
 **/*.Server/ModelManifest.xml
 _Pvt_Extensions
 
+
 # Paket dependency manager
 .paket/paket.exe
 paket-files/
@@ -361,3 +362,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+
+
+/BookSabz.Presentation.WebRazor/wwwroot/Books/

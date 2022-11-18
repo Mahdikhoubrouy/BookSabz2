@@ -15,11 +15,9 @@ namespace BookSabz.Infrastructure.EFCore.Search
     {
         private readonly BookSabzContext _dbContext;
 
-        private readonly IMapper _mapper;
-        public SearchRepository(BookSabzContext dbcontext, IMapper mapper)
+        public SearchRepository(BookSabzContext dbcontext)
         {
             _dbContext = dbcontext;
-            _mapper = mapper;
         }
 
         public List<SearchViewModel> SearchAnyValue(Domain.SearchAgg.Search command)
@@ -28,7 +26,12 @@ namespace BookSabz.Infrastructure.EFCore.Search
                     .AsNoTracking()
                     .Include(x => x.BookCategory)
                     .Where(x => x.Name.Contains(command.Value) || x.BookCategory.Name.Contains(command.Value) || x.Author.Contains(command.Value))
-                    .Select(x => _mapper.Map<Book, SearchViewModel>(x)).ToList();
+                    .Select(x => new SearchViewModel
+                    {
+                        Id = x.Id,
+                        Name = x.Name,
+                        ImagePath = x.ImagePath,
+                    }).ToList();
         }
     }
 }
