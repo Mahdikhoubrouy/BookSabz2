@@ -36,7 +36,7 @@ namespace BookSabz.Presentation.WebRazor.Pages
         }
 
 
-        public async void OnGet()
+        public void OnGet()
         {
 
             PopularBook = _mapper.Map<List<BookListViewModel>, List<ViewBookTagHelperModel>>(_book.GetLisProposede());

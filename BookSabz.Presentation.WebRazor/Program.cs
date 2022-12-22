@@ -15,10 +15,10 @@ var builder = WebApplication.CreateBuilder(args);
 # region DbContext
 
 builder.Services.AddDbContext<BookSabzContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("me")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("booksabz")));
 
 builder.Services.AddDbContext<BookSabzIdentityContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("me")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("booksabz")));
 
 #endregion
 
@@ -54,7 +54,17 @@ builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
+//if (!app.Environment.IsDevelopment())
+//{
+//    app.UseExceptionHandler("/Error");
+//    app.UseHsts();
+//}
+
 if (!app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+else
 {
     app.UseExceptionHandler("/Error");
     app.UseHsts();
