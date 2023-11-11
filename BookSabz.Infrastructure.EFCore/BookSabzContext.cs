@@ -21,7 +21,5 @@ namespace BookSabz.Infrastructure.EFCore
             var assembly = typeof(BookMapping).Assembly;
             modelBuilder.ApplyConfigurationsFromAssembly(assembly);
         }
-
-
     }
 }

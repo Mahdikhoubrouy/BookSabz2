@@ -12,13 +12,16 @@ using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
-# region DbContext
-
+#region DbContext
+var connectionString = builder.Configuration.GetConnectionString("booksabz");
+var serverVersion = new MySqlServerVersion(new Version(8, 0, 32));
 builder.Services.AddDbContext<BookSabzContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("booksabz")));
+    options.UseMySql(connectionString, serverVersion));
 
 builder.Services.AddDbContext<BookSabzIdentityContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("booksabz")));
+    options.UseMySql(connectionString, serverVersion));
+
+
 
 #endregion
 
